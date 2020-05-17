@@ -9,13 +9,11 @@ const connection = mysql.createConnection({
 
 connection.connect();
 
-connection.query("SELECT * FROM city WHERE Population > 8000000", function (err, result) {
+connection.query("SELECT name, population FROM city WHERE Population > 8000000", function (err, result) {
     if (err) throw err;
     let results = JSON.parse(JSON.stringify(result))
     console.log('1. What are the names of countries with population greater than 8 million?');
-    for (let i in results) {
-      console.log(`${results[i].Name}, Population: ${results[i].Population}`);
-    }
+    console.log(results);
 });
 
 connection.query('SELECT name FROM country WHERE name LIKE "%land%"', function (err,result) {
@@ -47,11 +45,11 @@ connection.query("SELECT Name, SurfaceArea FROM country ORDER BY SurfaceArea DES
     }
 );
 
-connection.query('SELECT * FROM city WHERE CountryCode = "NLD"', function (err, result) {
+connection.query('SELECT name FROM city WHERE CountryCode = "NLD"', function (err, result) {
     if (err) throw err;
     let results = JSON.parse(JSON.stringify(result))
     console.log("6.  What are the names of all the cities in the Netherlands?");
-     console.log(results.Name, results.CountryCode);
+     console.log(results);
     }
 );
 
@@ -63,25 +61,21 @@ connection.query('SELECT Name, Population FROM city WHERE name = "Rotterdam"', f
 );
 
 
-connection.query("SELECT * FROM country ORDER BY SurfaceArea DESC LIMIT 10", function (err, result, field) {
+connection.query("SELECT name, surfaceArea FROM country ORDER BY SurfaceArea DESC LIMIT 10", function (err, result, field) {
     if (err) throw err;
     let results = JSON.parse(JSON.stringify(result))
     console.log("8. What's the top 10 countries by Surface Area?");
-    
-    for (let i in results) {
-      console.log(results[i].Name, results[i].SurfaceArea);
-    }
+    console.log(results);
   }
 );
 
 connection.query(
-  "SELECT * FROM city ORDER BY Population DESC LIMIT 10", function (err, result, field) {
+  "SELECT name, population FROM city ORDER BY Population DESC LIMIT 10", function (err, result, field) {
     if (err) throw err;
     let results = JSON.parse(JSON.stringify(result))
     console.log("9. What's the top 10 most populated cities?");
-    for (let i in results) {
-      console.log(results[i].Name, results[i].Population);
-    }
+    console.log(results);
+
   }
 );
 

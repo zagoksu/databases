@@ -47,23 +47,25 @@ connection.query(`USE ${databaseName}`, function (err, result) {
 // 4.inserting values
 const queryData = [
   // invitee values
-  'INSERT INTO Invitee VALUES(1, "John", "Kelly")',
-  'INSERT INTO Invitee VALUES (2, "Jack", "Lara")',
-  'INSERT INTO Invitee VALUES (3, "Tommy", "Pam")',
-  'INSERT INTO Invitee VALUES (4, "Ari", "Lizbeth")',
-  'INSERT INTO Invitee VALUES (5, "Carlos", "Alexa")',
+  'INSERT INTO Invitee SET invitee_no = "1", invitee_name = "John", invited_by = "Kelly"',
+  'INSERT INTO Invitee SET invitee_no = "1", invitee_name = "Jack", invited_by = "Lara"',
+  'INSERT INTO Invitee SET invitee_no = "1", invitee_name = "Tommy", invited_by = "Pam"',
+  'INSERT INTO Invitee SET invitee_no = "1", invitee_name = "Ari", invited_by = "Lizbeth"',
+  'INSERT INTO Invitee SET invitee_no = "1", invitee_name = "Carlos", invited_by = "Alexa"',
+
   // room values
-  'INSERT INTO Room VALUES(1, "Absinth", "1")',
-  'INSERT INTO Room VALUES(2, "Baraonda", "2")',
-  'INSERT INTO Room VALUES(3, "Duro", "3")',
-  'INSERT INTO Room VALUES(4, "Nasomatto", "4")',
-  'INSERT INTO Room VALUES(5, "Nudiflorum", "5")',
+  'INSERT INTO Room SET room_no = "1", room_name = "Absinth", floor_number = "1"',
+  'INSERT INTO Room SET room_no = "2", room_name = "Baraonda", floor_number = "2"',
+  'INSERT INTO Room SET room_no = "3", room_name = "Druo", floor_number = "3"',
+  'INSERT INTO Room SET room_no = "4", room_name = "Nasomatto", floor_number = "4"',
+  'INSERT INTO Room SET room_no = "5", room_name = "Nudiflorum", floor_number = "5"',
+
   // meeting values
-  'INSERT INTO meeting VALUES(1, "Climate Change", "2019-07-07 09:00", "2020-01-01 12:00", 101)',
-  'INSERT INTO meeting VALUES(2, "World Economy", "2020-07-12 09:00", "2020-01-02 12:00", 201)',
-  'INSERT INTO meeting VALUES(3, "Corruption", "2020-01-03 10:00", "2020-01-03 12:00", 301)',
-  'INSERT INTO meeting VALUES(4, "Development", "2020-01-04 10:00", "2020-01-04 12:00", 401)',
-  'INSERT INTO meeting VALUES(5, "Artificial Intelligence", "2020-01-05 10:00", "2020-01-05 12:00", 501)'
+  'INSERT INTO Meeting SET meeting_no= "1", meeting_title ="Climate", starting_time ="2019-07-07 09:00", ending_time ="2020-01-01 12:00", room_no ="101"',
+  'INSERT INTO Meeting SET meeting_no= "2", meeting_title ="Economy", starting_time ="2019-07-07 09:00", ending_time ="2020-01-01 12:00", room_no ="102"',
+  'INSERT INTO Meeting SET meeting_no= "3", meeting_title ="Corruption", starting_time ="2019-07-07 09:00", ending_time ="2020-01-01 12:00", room_no ="103"',
+  'INSERT INTO Meeting SET meeting_no= "4", meeting_title ="Development", starting_time ="2019-07-07 09:00", ending_time ="2020-01-01 12:00", room_no ="104"',
+  'INSERT INTO Meeting SET meeting_no= "5", meeting_title ="AI", starting_time ="2019-07-07 09:00", ending_time ="2020-01-01 12:00", room_no ="105"'
 ];
 
 queryData.forEach(value => {
