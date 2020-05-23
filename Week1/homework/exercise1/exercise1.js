@@ -45,31 +45,52 @@ connection.query(`USE ${databaseName}`, function (err, result) {
   })
   
 // 4.inserting values
-const queryData = [
+const queryDataInvitee = [
   // invitee values
-  'INSERT INTO Invitee SET invitee_no = "1", invitee_name = "John", invited_by = "Kelly"',
-  'INSERT INTO Invitee SET invitee_no = "1", invitee_name = "Jack", invited_by = "Lara"',
-  'INSERT INTO Invitee SET invitee_no = "1", invitee_name = "Tommy", invited_by = "Pam"',
-  'INSERT INTO Invitee SET invitee_no = "1", invitee_name = "Ari", invited_by = "Lizbeth"',
-  'INSERT INTO Invitee SET invitee_no = "1", invitee_name = "Carlos", invited_by = "Alexa"',
-
+  {invitee_no: "1", invitee_name: "John", invited_by : "Kelly"},
+  {invitee_no: "2", invitee_name : "Jack", invited_by : "Lara"},
+  {invitee_no: "3", invitee_name : "Tommy", invited_by : "Pam"},
+  {invitee_no: "4", invitee_name : "Ari", invited_by : "Lizbeth"},
+  {invitee_no: "5", invitee_name : "Carlos", invited_by : "Alexa"},
+]
+const queryDataRoom = [
   // room values
-  'INSERT INTO Room SET room_no = "1", room_name = "Absinth", floor_number = "1"',
-  'INSERT INTO Room SET room_no = "2", room_name = "Baraonda", floor_number = "2"',
-  'INSERT INTO Room SET room_no = "3", room_name = "Druo", floor_number = "3"',
-  'INSERT INTO Room SET room_no = "4", room_name = "Nasomatto", floor_number = "4"',
-  'INSERT INTO Room SET room_no = "5", room_name = "Nudiflorum", floor_number = "5"',
+  {room_no: "1", room_name : "Absinth", floor_number : "1"},
+  {room_no: "2", room_name :"Baraonda", floor_number : "2"},
+  {room_no : "3", room_name : "Druo", floor_number : "3"},
+  {room_no : "4", room_name : "Nasomatto", floor_number : "4"},
+  {room_no : "5", room_name : "Nudiflorum", floor_number : "5"}
+]
 
+const queryDataMeeting= [
   // meeting values
-  'INSERT INTO Meeting SET meeting_no= "1", meeting_title ="Climate", starting_time ="2019-07-07 09:00", ending_time ="2020-01-01 12:00", room_no ="101"',
-  'INSERT INTO Meeting SET meeting_no= "2", meeting_title ="Economy", starting_time ="2019-07-07 09:00", ending_time ="2020-01-01 12:00", room_no ="102"',
-  'INSERT INTO Meeting SET meeting_no= "3", meeting_title ="Corruption", starting_time ="2019-07-07 09:00", ending_time ="2020-01-01 12:00", room_no ="103"',
-  'INSERT INTO Meeting SET meeting_no= "4", meeting_title ="Development", starting_time ="2019-07-07 09:00", ending_time ="2020-01-01 12:00", room_no ="104"',
-  'INSERT INTO Meeting SET meeting_no= "5", meeting_title ="AI", starting_time ="2019-07-07 09:00", ending_time ="2020-01-01 12:00", room_no ="105"'
+  {meeting_no: "1", meeting_title :"Climate", starting_time :"2019-07-07 09:00", ending_time :"2020-01-01 12:00", room_no :"101"},
+  {meeting_no: "2", meeting_title :"Economy", starting_time :"2019-07-07 09:00", ending_time :"2020-01-01 12:00", room_no :"102"},
+  {meeting_no: "3", meeting_title :"Corruption", starting_time :"2019-07-07 09:00", ending_time :"2020-01-01 12:00", room_no :"103"},
+  {meeting_no: "4", meeting_title :"Development", starting_time :"2019-07-07 09:00", ending_time :"2020-01-01 12:00", room_no :"104"},
+  {meeting_no: "5", meeting_title :"AI", starting_time :"2019-07-07 09:00", ending_time :"2020-01-01 12:00", room_no :"105"}
 ];
 
-queryData.forEach(value => {
-  connection.query(value, function (error, results, fields) {
+queryDataInvitee.forEach(value => {
+  connection.query('INSERT INTO Invitee SET ?', value, function (error, results, fields) {
+    if (error) {
+      throw error;
+    }
+  });
+  console.log("Values are inserted");
+});
+
+queryDataRoom.forEach(value => {
+  connection.query('INSERT INTO Room SET ?', value, function (error, results, fields) {
+    if (error) {
+      throw error;
+    }
+  });
+  console.log("Values are inserted");
+});
+
+queryDataMeeting.forEach(value => {
+  connection.query('INSERT INTO Meeting SET ?', value, function (error, results, fields) {
     if (error) {
       throw error;
     }
