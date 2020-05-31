@@ -36,7 +36,8 @@ async function seedDatabase() {
 	connection.connect();
 
 	try {
-    await Promise.all[execQuery(CREATE_RESEARCH_PAPERS_TABLE), execQuery(CREATE_AUTHOR_PAPER_RELATION_TABLE)];
+    await execQuery(CREATE_RESEARCH_PAPERS_TABLE);
+    await execQuery(CREATE_AUTHOR_PAPER_RELATION_TABLE);
 
     const authorsData = await readFile(__dirname +
         "/authors.json", "utf8");
@@ -61,13 +62,15 @@ async function seedDatabase() {
         execQuery("INSERT INTO author_paper_relation SET ?", relation)
     );
 
-    await Promise.all[(authorsPromises, papersPromises,relationsPromises)];
-    connection.end();
-} catch (error) {
-    console.error(error);
-    connection.end();
-}
-}
+    await Promise.all[relationsPromises];
+    
+    } catch (error) {
+        console.error(error);
+        connection.end();
+    } finally {
+        connection.end();
+    }
+    }
 
 
 seedDatabase();
